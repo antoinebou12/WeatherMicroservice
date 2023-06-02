@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/workspaces/WeatherMicroservice/WeatherMicroservice/WeatherMicroservice.csproj": {}
+    "/mnt/c/Users/antoine.boucher/source/repos/WeatherMicroservice/WeatherMicroservice/WeatherMicroservice.csproj": {}
   },
   "projects": {
-    "/workspaces/WeatherMicroservice/WeatherMicroservice/WeatherMicroservice.csproj": {
+    "/mnt/c/Users/antoine.boucher/source/repos/WeatherMicroservice/WeatherMicroservice/WeatherMicroservice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/workspaces/WeatherMicroservice/WeatherMicroservice/WeatherMicroservice.csproj",
+        "projectUniqueName": "/mnt/c/Users/antoine.boucher/source/repos/WeatherMicroservice/WeatherMicroservice/WeatherMicroservice.csproj",
         "projectName": "WeatherMicroservice",
-        "projectPath": "/workspaces/WeatherMicroservice/WeatherMicroservice/WeatherMicroservice.csproj",
-        "packagesPath": "/home/codespace/.nuget/packages/",
-        "outputPath": "/workspaces/WeatherMicroservice/WeatherMicroservice/obj/",
+        "projectPath": "/mnt/c/Users/antoine.boucher/source/repos/WeatherMicroservice/WeatherMicroservice/WeatherMicroservice.csproj",
+        "packagesPath": "/home/antoine/.nuget/packages/",
+        "outputPath": "/mnt/c/Users/antoine.boucher/source/repos/WeatherMicroservice/WeatherMicroservice/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/codespace/.nuget/NuGet/NuGet.Config"
+          "/home/antoine/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -38,6 +38,18 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "App.Metrics.AspNetCore": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "Microsoft.ApplicationInsights.AspNetCore": {
+              "target": "Package",
+              "version": "[2.21.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
             "Microsoft.FeatureManagement": {
               "target": "Package",
               "version": "[2.5.1, )"
@@ -46,9 +58,45 @@
               "target": "Package",
               "version": "[13.0.3, )"
             },
+            "OpenTelemetry": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            },
+            "OpenTelemetry.Exporter.Jaeger": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            },
+            "OpenTelemetry.Instrumentation.AspNetCore": {
+              "target": "Package",
+              "version": "[1.0.0-rc9.14, )"
+            },
+            "Sentry.AspNetCore": {
+              "target": "Package",
+              "version": "[3.33.0, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[2.12.0, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Serilog.Sinks.Elasticsearch": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "prometheus-net": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "prometheus-net.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             }
           },
           "imports": [
@@ -57,8 +105,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -70,7 +117,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/dotnet/7.0.203/sdk/7.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.116/RuntimeIdentifierGraph.json"
         }
       }
     }
