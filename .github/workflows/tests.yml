@@ -1,1 +1,84 @@
+name: .NET WeatherMicroservice Test
 
+on:
+  push:
+    branches: [main]
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.100
+
+      - name: Install dependencies
+        run: dotnet restore WeatherMicroservice/WeatherMicroservice.csproj
+
+  build:
+    needs: restore
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.100
+
+      - name: Build
+        run: |
+          dotnet restore WeatherMicroservice/WeatherMicroservice.csproj
+          dotnet build WeatherMicroservice/WeatherMicroservice.csproj --configuration Release
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.100
+
+      - name: Test
+        run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./reports/ /p:MergeWith=./reports/coverage.json WeatherMicroservice.Tests/WeatherMicroservice.Tests.csproj
+      - name: Upload coverage to GitHub Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: SentrySDK.AspNetCore.Tests
+          path: WeatherMicroservice.Tests/WeatherMicroservice.Tests.csproj/reports
+
+  coverage:
+      needs: test
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+          
+        - name: Download reports
+          uses: actions/download-artifact@v3
+          with:
+              name: SentrySDK.Tests
+              path: WeatherMicroservice.Tests/WeatherMicroservice.Tests.csproj/reports
+
+        - name: Codecov SentrySDK.AspNetCore.Tests
+          uses: codecov/codecov-action@v3
+          with:
+            target: 60%
+            threshold: 0.1
+            files: "WeatherMicroservice.Tests/WeatherMicroservice.Tests.csproj/reports/coverage.cobertura.xml"
+            fail_ci_if_error: true
+            token: ${{ secrets.CODECOV_TOKEN }}
+
+        - name: Codecov SentrySDK.Tests
+          uses: codecov/codecov-action@v3
+          with:
+            target: 60%
+            threshold: 0.1
+            files: "WeatherMicroservice.Tests/WeatherMicroservice.Tests.csproj/reports/coverage.cobertura.xml"
+            fail_ci_if_error: true
+            token: ${{ secrets.CODECOV_TOKEN }}
